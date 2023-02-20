@@ -91,7 +91,7 @@ export default function App() {
                       <input
                         type='number'
                         name='expiry_date'
-                        id='expiry_date'
+                        id='expiry_dateMonth'
                         placeholder='MM'
                         max={12}
                         value={dateMonth}
@@ -101,7 +101,7 @@ export default function App() {
                       <input
                         type='number'
                         name='expiry_date'
-                        id='expiry_date'
+                        id='expiry_dateYear'
                         placeholder='YY'
                         max={99}
                         value={dateYear}
