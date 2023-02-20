@@ -3,13 +3,13 @@ import bgMobile from './images/bg-main-mobile.png'
 import bgDesktop from './images/bg-main-desktop.png'
 import logo from './images/card-logo.svg'
 import tick from './images/icon-complete.svg'
-import {format} from "date-fns"
 
 export default function App() {
   const [confirmed, setConfirmed] = useState(false)
   const [name, setName] = useState('')
   const [cardNumber, setCardNumber] = useState('')
-  const [date, setDate] = useState("01/01/23")
+  const [dateMonth, setDateMonth] = useState('')
+  const [dateYear, setDateYear] = useState('')
   const [cvc, setCvc] = useState('')
 
   return (
@@ -18,7 +18,7 @@ export default function App() {
         <div className='absolute -z-10 w-full'>
           <picture>
             <source media='(min-width: 768px)' srcSet={bgDesktop} />
-            <img src={bgMobile} alt='' className='w-full md:w-1/3' />
+            <img src={bgMobile} alt='background' className='w-full md:w-1/3' />
           </picture>
         </div>
 
@@ -29,7 +29,10 @@ export default function App() {
 
               <div>
                 <h2 className='text-white text-xl mb-6 lg:text-3xl tracking-widest'>
-                  {cardNumber}
+                  {cardNumber
+                    .replace(/\s/g, '')
+                    .replace(/(\d{4})/g, '$1 ')
+                    .trim()}
                 </h2>
 
                 <ul className='flex items-center justify-between'>
@@ -37,7 +40,7 @@ export default function App() {
                     {name}
                   </li>
                   <li className='text-white text-base lg:text-xl tracking-widest'>
-                    {format(new Date(date), "MM/yy")}
+                    {`${dateMonth}/${dateYear}`}
                   </li>
                 </ul>
               </div>
@@ -59,9 +62,9 @@ export default function App() {
                     name='cardholder_name'
                     id='cardholder_name'
                     placeholder='e.g. John Doe'
-                    required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    required
                   />
                 </div>
 
@@ -69,31 +72,43 @@ export default function App() {
                   <label htmlFor='card_number'>Card Number</label>
                   <input
                     type='text'
+                    pattern="[0-9]+"
+                    title='Use only numbers'
                     name='card_number'
                     id='card_number'
                     placeholder='e.g. 1234 1234 1234 1234'
-                    maxLength={19}
-                    required
-                    value={cardNumber
-                      .replace(/\s/g, '')
-                      .replace(/(\d{4})/g, '$1 ')
-                      .trim()}
+                    maxLength={16}
+                    value={cardNumber}
                     onChange={(e) => setCardNumber(e.target.value)}
+                    required
                   />
                 </div>
 
                 <article className='flex items-center justify-between gap-8'>
                   <div className='flex-1'>
                     <label htmlFor='expiry_date'>Exp. Date (MM/YY)</label>
-                    <input
-                      type='month'
-                      name='expiry_date'
-                      id='expiry_date'
-                      placeholder='MM YY'
-                      required
-                      value={date}
-                      onChange={(e) => setDate(e.target.value)}
-                    />
+                    <div className='flex'>
+                      <input
+                        type='number'
+                        name='expiry_date'
+                        id='expiry_date'
+                        placeholder='MM'
+                        max={12}
+                        value={dateMonth}
+                        onChange={(e) => setDateMonth(e.target.value)}
+                        required
+                      />
+                      <input
+                        type='number'
+                        name='expiry_date'
+                        id='expiry_date'
+                        placeholder='YY'
+                        max={99}
+                        value={dateYear}
+                        onChange={(e) => setDateYear(e.target.value)}
+                        required
+                      />
+                    </div>
                   </div>
 
                   <div className='flex-1'>
@@ -104,9 +119,9 @@ export default function App() {
                       id='cvc_number'
                       placeholder='e.g. 123'
                       maxLength={3}
-                      required
                       value={cvc}
                       onChange={(e) => setCvc(e.target.value)}
+                      required
                     />
                   </div>
                 </article>
