@@ -10,6 +10,7 @@ This is a solution to the [Interactive card details form challenge on Frontend M
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
+  - [Continued development](#continued-development)
 - [Author](#author)
 
 
@@ -29,12 +30,12 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./src/images/final_result.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [GitHub](https://github.com/hmark94/interactive-card-details.git)
+- Live Site URL: [Netlify App](https://serene-crumble-79e6b1.netlify.app/)
 
 ## My process
 
@@ -48,6 +49,10 @@ Users should be able to:
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
 - [Tailwind CSS](https://tailwindcss.com//) - For styles
+
+### Continued development
+
+I will continue to learn form validation, better fluid UI, learn Tailwind CSS deeper. I have some challanges with this project, I know I can do it better in the future. It's a path what I have to pass. I will keep going on the road.
 
 
 ## Author
